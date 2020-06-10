@@ -11,6 +11,9 @@
 # production
 /build
 
+# hosting
+/.firebase
+
 # config
 config.js
 

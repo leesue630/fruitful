@@ -19,3 +19,11 @@ code {
 .logo {
   width: 50
 }
+
+.centered {
+  text-align: center;
+}
+
+.card {
+  display: inline-block;
+}

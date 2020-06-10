@@ -7,6 +7,7 @@ import config from "../util/config";
 import logo from "../images/logo.png";
 
 // MUI stuff
+import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
@@ -18,13 +19,17 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 
 firebase.initializeApp(config);
 
+const useStyles = () => ({
+    title: {
+      margin: 20,
+      flexGrow: 1
+    }
+  });
+
 class Navbar extends Component {
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-    callbacks: {
-      signInSuccess: () => false,
-    },
   };
 
   componentDidMount = () => {
@@ -48,13 +53,14 @@ class Navbar extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <AppBar>
         <Toolbar>
           <Link to="/">
             <img src={logo} alt="logo" style={{ width: 40, height: 40 }} />
           </Link>
-          <Typography variant="h5" align="left">
+          <Typography variant="h5" align="left" className={classes.title}>
             FruitBasket
           </Typography>
           {this.props.auth ? (
@@ -84,4 +90,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withStyles(useStyles)(Navbar);

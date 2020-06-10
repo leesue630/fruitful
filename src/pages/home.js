@@ -33,7 +33,7 @@ class home extends Component {
     ) : (
       <p>Loading...</p>
     );
-    return <div>{recentPostsMarkup}</div>;
+    return <div className="centered">{recentPostsMarkup}</div>;
   }
 }
 

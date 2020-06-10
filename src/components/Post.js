@@ -23,7 +23,7 @@ export default function Post(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} maxWidth="400">
       <CardContent>
         <Typography
           className={classes.title}
@@ -34,7 +34,6 @@ export default function Post(props) {
         >
           @{props.userHandle}
         </Typography>{" "}
-        {/* link to user page */}
         <Typography variant="h5" component="h2">
           {props.fruit}
         </Typography>

@@ -39,12 +39,13 @@ class home extends Component {
     ) : (
       <p>Loading...</p>
     );
+    let handle = `@${this.props.match.params.handle}`;
     let handleDisplay =
       (this.props.auth && this.props.handle === this.props.match.params.handle)
-        ? "@me"
-        : `@${this.props.match.params.handle}`;
+        ? `Hi ${handle}!`
+        : handle;
     return (
-      <div>
+      <div className="centered">
         <Typography variant="h3" align="left">
           {handleDisplay}
         </Typography>
