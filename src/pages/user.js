@@ -7,7 +7,6 @@ class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: null,
       posts: null,
     };
   }
@@ -40,10 +39,14 @@ class home extends Component {
     ) : (
       <p>Loading...</p>
     );
+    let handleDisplay =
+      (this.props.auth && this.props.handle === this.props.match.params.handle)
+        ? "@me"
+        : `@${this.props.match.params.handle}`;
     return (
       <div>
         <Typography variant="h3" align="left">
-          @{this.state.handle}
+          {handleDisplay}
         </Typography>
         {recentPostsMarkup}
       </div>
