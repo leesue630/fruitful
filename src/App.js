@@ -25,21 +25,23 @@ class App extends Component {
   }
 
   onLogin() {
-    this.setState({
-      auth: true,
-    });
     axios
       .get("/user")
       .then((res) => {
         console.log(res);
         this.setState({
+          auth: true,
           handle: res.data.handle,
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
         if (err.response.status !== 404) {
+          this.setState({
+            auth: true,
+          });
           console.log("Login Failed");
+        } else {
+          console.error(err);
         }
       });
   }
