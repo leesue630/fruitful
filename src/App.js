@@ -86,7 +86,6 @@ class App extends Component {
                   <Signup auth={this.state.auth} setHandle={this.setHandle} />
                 )}
               </Route>
-              />
               <Route
                 exact
                 path="/users/:handle"

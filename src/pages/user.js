@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Post from "../components/Post";
+import PostView from "../components/PostView";
 import Typography from "@material-ui/core/Typography";
 
 class home extends Component {
@@ -23,33 +23,17 @@ class home extends Component {
       .catch(console.log);
   }
   render() {
-    let recentPostsMarkup = this.state.posts ? (
-      this.state.posts.length === 0 ? (
-        <p>No posts</p>
-      ) : (
-        this.state.posts.map((post) => (
-          <Post
-            key={post.postId}
-            userHandle={post.userHandle}
-            fruit={post.fruit}
-            createdAt={post.createdAt}
-          />
-        ))
-      )
-    ) : (
-      <p>Loading...</p>
-    );
     let handle = `@${this.props.match.params.handle}`;
     let handleDisplay =
       (this.props.auth && this.props.handle === this.props.match.params.handle)
-        ? `Hi ${handle}!`
+        ? `${handle} (You)`
         : handle;
     return (
-      <div className="centered">
-        <Typography variant="h3" align="left">
+      <div>
+        <Typography variant="h5" align="left">
           {handleDisplay}
         </Typography>
-        {recentPostsMarkup}
+        <PostView posts={this.state.posts} />
       </div>
     );
   }

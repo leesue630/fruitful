@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Post from "../components/Post";
+import PostView from "../components/PostView";
 
 class home extends Component {
   constructor(props) {
@@ -21,19 +21,7 @@ class home extends Component {
       .catch(console.log);
   }
   render() {
-    let recentPostsMarkup = this.state.posts ? (
-      this.state.posts.map((post) => (
-        <Post
-          key={post.postId}
-          userHandle={post.userHandle}
-          fruit={post.fruit}
-          createdAt={post.createdAt}
-        />
-      ))
-    ) : (
-      <p>Loading...</p>
-    );
-    return <div className="centered">{recentPostsMarkup}</div>;
+    return <PostView posts={this.state.posts} />;
   }
 }
 

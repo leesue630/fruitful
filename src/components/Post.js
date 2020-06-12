@@ -11,7 +11,8 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginBottom: 20,
+    maxWidth: 400,
+    marginBottom: 10
   },
   title: {
     fontSize: 14,
@@ -23,7 +24,7 @@ export default function Post(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} maxWidth="400">
+    <Card className={classes.root}>
       <CardContent>
         <Typography
           className={classes.title}

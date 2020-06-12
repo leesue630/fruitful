@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import config from "../util/config";
 import logo from "../images/logo.png";
@@ -65,7 +66,7 @@ class Navbar extends Component {
           </Typography>
           {this.props.auth ? (
             <span>
-              <Link to={`/user/${this.props.handle}`}>
+              <Link to={`/users/${this.props.handle}`}>
                 <IconButton>
                   <AccountCircle />
                 </IconButton>
