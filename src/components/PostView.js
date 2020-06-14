@@ -5,7 +5,7 @@ import Post from "../components/Post";
 export default function PostView(props) {
   const recentPostsMarkup = props.posts ? (
     props.posts.map((post) => (
-      <Grid item xs={3}>
+      <Grid item key={post.postId} xs={3}>
         <Post
           key={post.postId}
           userHandle={post.userHandle}
