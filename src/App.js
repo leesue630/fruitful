@@ -8,6 +8,7 @@ import Home from "./pages/home";
 import Signup from "./pages/signup";
 import User from "./pages/user";
 import Navbar from "./components/Navbar";
+import FruitPage from "./pages/fruitPage";
 
 axios.defaults.baseURL =
   "https://us-central1-fruitful-convos.cloudfunctions.net/api";
@@ -28,7 +29,7 @@ class App extends Component {
     axios
       .get("/user")
       .then((res) => {
-        console.log(res);
+        console.log("authorized user details", res);
         this.setState({
           auth: true,
           handle: res.data.handle,
@@ -91,6 +92,17 @@ class App extends Component {
                 path="/users/:handle"
                 render={(props) => (
                   <User
+                    {...props}
+                    auth={this.state.auth}
+                    handle={this.state.handle}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/fruits/:fruitId"
+                render={(props) => (
+                  <FruitPage
                     {...props}
                     auth={this.state.auth}
                     handle={this.state.handle}

@@ -5,10 +5,10 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 
-const useStyles = theme => ({
+const useStyles = (theme) => ({
   textField: {
-    margin: 20
-  }
+    margin: 20,
+  },
 });
 
 class signup extends Component {
@@ -24,21 +24,21 @@ class signup extends Component {
     event.preventDefault();
     if (!this.state.error) {
       axios
-      .post("/createUser", { handle: this.state.handle })
-      .then((res) => {
-        console.log(res);
-        this.props.setHandle(this.state.handle);
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.status === 400) {
-          this.setState({
-            error: "This handle is already taken",
-          });
-        } else {
-          console.log("Something went wrong");
-        }
-      });
+        .pick("/createUser", { handle: this.state.handle })
+        .then((res) => {
+          console.log("created user", res);
+          this.props.setHandle(this.state.handle);
+        })
+        .catch((err) => {
+          console.error(err);
+          if (err.response.status === 400) {
+            this.setState({
+              error: "This handle is already taken",
+            });
+          } else {
+            console.log("Something went wrong");
+          }
+        });
     }
   }
 
@@ -48,14 +48,14 @@ class signup extends Component {
     });
     if (event.target.value === "") {
       this.setState({
-        error: "Handle cannot be empty"
+        error: "Handle cannot be empty",
       });
     } else {
       this.setState({
-        error: null
-      })
+        error: null,
+      });
     }
-  };
+  }
 
   render() {
     const { classes } = this.props;

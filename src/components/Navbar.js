@@ -21,19 +21,19 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 firebase.initializeApp(config);
 
 const useStyles = () => ({
-    title: {
-      margin: 20,
-      flexGrow: 1
-    }
-  });
+  title: {
+    margin: 20,
+    flexGrow: 1,
+  },
+});
 
 class Navbar extends Component {
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
-       signInSuccessWithAuthResult: () => false
-    }
+      signInSuccessWithAuthResult: () => false,
+    },
   };
 
   componentDidMount = () => {
@@ -42,9 +42,7 @@ class Navbar extends Component {
         user
           .getIdToken()
           .then((token) => {
-            axios.defaults.headers.common[
-                "Authorization"
-              ] = `Bearer ${token}`;
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             return `Bearer ${token}`;
           })
           .then((header) => {
@@ -65,7 +63,7 @@ class Navbar extends Component {
             <img src={logo} alt="logo" style={{ width: 40, height: 40 }} />
           </Link>
           <Typography variant="h5" align="left" className={classes.title}>
-            FruitBasket
+            Fruitful
           </Typography>
           {this.props.auth ? (
             <span>

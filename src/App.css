@@ -1,3 +1,21 @@
 .App {
   text-align: center;
 }
+
+.container {
+  margin: 80px auto 0 auto;
+  text-align: center;
+  max-width: 1200px;
+}
+
+.fruit {
+  display: inline-block;
+  margin: 30px;
+  width: 100px;
+  height: 100px;
+}
+
+.fruit img {
+  width: 100px;
+  height: 100px;
+}

@@ -1,27 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
-import PostView from "../components/PostView";
-
+import Fruits from "../components/Fruits";
 class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: null,
+      loading: true,
     };
   }
   componentDidMount() {
     axios
-      .get("/posts")
+      .get("/fruits")
       .then((res) => {
-        console.log(res);
+        console.log("fruits", res);
         this.setState({
-          posts: res.data,
+          fruits: res.data,
+          loading: false,
         });
       })
       .catch(console.log);
   }
   render() {
-    return <PostView posts={this.state.posts} />;
+    return this.state.loading ? (
+      <div>Loading...</div>
+    ) : (
+      <Fruits fruits={this.state.fruits} />
+    );
   }
 }
 
