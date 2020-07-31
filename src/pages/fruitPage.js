@@ -40,7 +40,6 @@ class fruitPage extends Component {
         <Fruit
           fruitId={this.state.fruitId}
           name={this.state.name}
-          ranking={0}
           pickCount={this.state.pickCount}
         />
         <PickView picks={this.state.picks} />

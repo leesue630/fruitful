@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Fruits from "../components/Fruits";
+import PickModal from "../components/PickModal";
+
 class home extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,10 @@ class home extends Component {
     return this.state.loading ? (
       <div>Loading...</div>
     ) : (
-      <Fruits fruits={this.state.fruits} />
+      <div>
+        <Fruits fruits={this.state.fruits} />
+        <PickModal auth={this.props.auth} />
+      </div>
     );
   }
 }

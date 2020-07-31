@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import PickView from "../components/PickView";
+import PickModal from "../components/PickModal";
 import Typography from "@material-ui/core/Typography";
 
 class home extends Component {
@@ -32,6 +33,7 @@ class home extends Component {
         <Typography variant="h5" align="left">
           {handleDisplay}
         </Typography>
+        {isPersonalPage && <PickModal auth={this.props.auth} />}
         <Typography variant="h5">
           {isPersonalPage && "Your"} Current Pick: {this.state.currentPick}
         </Typography>

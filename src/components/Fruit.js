@@ -19,7 +19,8 @@ export default function Fruit(props) {
           alt={props.name + " Image"}
         />
       </Link>
-      Ranking: {props.ranking}, Pick Count: {props.pickCount}
+      {!!props.ranking && `Ranking: ${props.ranking}, `}Pick Count:{" "}
+      {props.pickCount}
     </div>
   );
 }

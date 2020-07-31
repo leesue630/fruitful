@@ -24,7 +24,7 @@ class signup extends Component {
     event.preventDefault();
     if (!this.state.error) {
       axios
-        .pick("/createUser", { handle: this.state.handle })
+        .post("/createUser", { handle: this.state.handle })
         .then((res) => {
           console.log("created user", res);
           this.props.setHandle(this.state.handle);

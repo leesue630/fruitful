@@ -49,7 +49,7 @@ class Navbar extends Component {
             this.props.onLogin();
           });
       } else {
-        console.error("Login Failed");
+        console.log("No user logged in.");
       }
     });
   };

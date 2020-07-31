@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
-import "./App.css";
 import Home from "./pages/home";
 import Signup from "./pages/signup";
 import User from "./pages/user";
 import Navbar from "./components/Navbar";
 import FruitPage from "./pages/fruitPage";
+
+document.cookie = "cross-site-cookie=G_ENABLED_IDPS; SameSite=None; Secure";
+document.cookie = "cross-site-cookie=G_ENABLED_IDPS; SameSite=None; Secure";
 
 axios.defaults.baseURL =
   "https://us-central1-fruitful-convos.cloudfunctions.net/api";
@@ -36,11 +38,11 @@ class App extends Component {
         });
       })
       .catch((err) => {
-        if (err.response.status !== 404) {
+        if (err.response.status === 404) {
           this.setState({
             auth: true,
           });
-          console.log("Login Failed");
+          console.log("Create Account");
         } else {
           console.error(err);
         }
@@ -77,7 +79,7 @@ class App extends Component {
                 {this.state.auth && !this.state.handle ? (
                   <Redirect to="/signup" />
                 ) : (
-                  <Home />
+                  <Home auth={this.state.auth} />
                 )}
               </Route>
               <Route exact path="/signup">
@@ -90,24 +92,32 @@ class App extends Component {
               <Route
                 exact
                 path="/users/:handle"
-                render={(props) => (
-                  <User
-                    {...props}
-                    auth={this.state.auth}
-                    handle={this.state.handle}
-                  />
-                )}
+                render={(props) =>
+                  this.state.auth && !this.state.handle ? (
+                    <Redirect to="/signup" />
+                  ) : (
+                    <User
+                      {...props}
+                      auth={this.state.auth}
+                      handle={this.state.handle}
+                    />
+                  )
+                }
               />
               <Route
                 exact
                 path="/fruits/:fruitId"
-                render={(props) => (
-                  <FruitPage
-                    {...props}
-                    auth={this.state.auth}
-                    handle={this.state.handle}
-                  />
-                )}
+                render={(props) =>
+                  this.state.auth && !this.state.handle ? (
+                    <Redirect to="/signup" />
+                  ) : (
+                    <FruitPage
+                      {...props}
+                      auth={this.state.auth}
+                      handle={this.state.handle}
+                    />
+                  )
+                }
               />
             </Switch>
           </div>
