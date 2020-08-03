@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import PickView from "../components/PickView";
 import Fruit from "../components/Fruit";
+
+//MUI
+import Typography from "@material-ui/core/Typography";
+
 class fruitPage extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +41,9 @@ class fruitPage extends Component {
       <div>Loading...</div>
     ) : (
       <div>
+        <Typography variant="h3" component="h2">
+          {this.state.name}
+        </Typography>
         <Fruit
           fruitId={this.state.fruitId}
           name={this.state.name}

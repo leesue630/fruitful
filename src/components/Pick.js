@@ -35,7 +35,7 @@ export default function Pick(props) {
         >
           @{props.userHandle}
         </Typography>{" "}
-        <Typography variant="h5" component="h2">
+        <Typography variant="h4" component="h2">
           {props.fruit}
         </Typography>
         <Typography variant="h5" component="h2">
