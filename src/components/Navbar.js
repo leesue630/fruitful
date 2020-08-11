@@ -6,6 +6,7 @@ import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import config from "../util/config";
 import logo from "../images/logo.png";
+import RequestModal from "./RequestModal";
 
 // MUI stuff
 import { withStyles } from "@material-ui/core/styles";
@@ -67,6 +68,7 @@ class Navbar extends Component {
           </Typography>
           {this.props.auth ? (
             <span>
+              <RequestModal auth={this.props.auth} />
               <Link to={`/users/${this.props.handle}`}>
                 <IconButton>
                   <AccountCircle />

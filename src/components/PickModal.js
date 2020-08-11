@@ -47,23 +47,29 @@ export default function PickModal(props) {
   const [uploading, setUploading] = React.useState(false);
   function openModal() {
     setIsOpen(true);
+    setError("");
+    setFruitPick("");
+    setComment("");
+    setUploading(false);
   }
 
   function afterOpenModal() {
-    axios
-      .get("/fruits")
-      .then((res) => {
-        setFruits(
-          Object.assign(
-            {},
-            ...res.data.map((fruit) => ({ [fruit.name]: fruit.id }))
-          )
-        );
-      })
-      .catch((err) => {
-        console.error("Something went wrong", err);
-        setError("Something went wrong...");
-      });
+    if (fruits.length === 0) {
+      axios
+        .get("/fruits")
+        .then((res) => {
+          setFruits(
+            Object.assign(
+              {},
+              ...res.data.map((fruit) => ({ [fruit.name]: fruit.id }))
+            )
+          );
+        })
+        .catch((err) => {
+          console.error("Something went wrong", err);
+          setError("Something went wrong...");
+        });
+    }
   }
 
   function closeModal() {
