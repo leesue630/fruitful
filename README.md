@@ -13,7 +13,7 @@
 ## Don't see your favorite fruit? Make a request and I'll be sent an email with your request. 😊
 <img src="requestmodal.png" width="300">
 
-Uses Modal React component (https://www.npmjs.com/package/react-modal)
+Uses Modal React component (https://www.npmjs.com/package/react-modal)<br/>
 Uses Nodemailer (https://www.npmjs.com/package/nodemailer)
 
 Built with React, HTML/CSS, Firebase
