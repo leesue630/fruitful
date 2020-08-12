@@ -19,3 +19,4 @@ Uses Nodemailer (https://www.npmjs.com/package/nodemailer)
 Built with React, HTML/CSS, Firebase, 
 
 Site Link: http://fruitful-convos.web.app
+Functions GitHub Repo: https://github.com/leesue630/fruitful-firebase-functions
