@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import PickView from "../components/PickView";
 import Fruit from "../components/Fruit";
+import PickModal from "../components/PickModal";
 
 //MUI
 import Typography from "@material-ui/core/Typography";
@@ -35,10 +36,20 @@ class fruitPage extends Component {
         });
       })
       .catch(console.error);
+    axios
+      .get("/fruits")
+      .then((res) => {
+        this.setState({
+          ranking: res.data.filter(
+            (fruit) => fruit.id === this.props.match.params.fruitId
+          )[0].ranking,
+        });
+      })
+      .catch(console.log);
   }
   render() {
     return this.state.loading ? (
-      <div>Loading...</div>
+      <div>Loading fruit page...</div>
     ) : (
       <div>
         <Typography variant="h3" component="h2">
@@ -48,8 +59,13 @@ class fruitPage extends Component {
           fruitId={this.state.fruitId}
           name={this.state.name}
           pickCount={this.state.pickCount}
+          ranking={this.state.ranking}
         />
-        <PickView picks={this.state.picks} />
+        <PickModal
+          auth={this.props.auth}
+          fruit={{ id: this.props.match.params.fruitId, name: this.state.name }}
+        />
+        <PickView picks={this.state.picks} showFruitName={false} />
       </div>
     );
   }

@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// MUI
+import Typography from "@material-ui/core/Typography";
+
 export default function Fruit(props) {
   /*
   props = {
@@ -19,8 +22,11 @@ export default function Fruit(props) {
           alt={props.name + " Image"}
         />
       </Link>
-      {!!props.ranking && `Ranking: ${props.ranking}, `}Pick Count:{" "}
-      {props.pickCount}
+      <br />
+      {!!props.ranking && (
+        <Typography variant="h5">#{props.ranking}</Typography>
+      )}
+      Active Picks: {props.pickCount}
     </div>
   );
 }

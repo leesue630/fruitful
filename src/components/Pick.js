@@ -34,12 +34,19 @@ export default function Pick(props) {
           to={`/users/${props.userHandle}`}
         >
           @{props.userHandle}
-        </Typography>{" "}
-        <Typography variant="h4" component="h2">
-          {props.fruit}
         </Typography>
+        <br />
+        {props.showFruitName && (
+          <Typography
+            variant="h4"
+            component={Link}
+            to={`/fruits/${props.fruit}`}
+          >
+            {props.fruit}
+          </Typography>
+        )}
         <Typography variant="h5" component="h2">
-          {props.comment}
+          "{props.comment}"
         </Typography>
         <Typography color="textSecondary">
           {DayJs(props.createdAt).fromNow()}

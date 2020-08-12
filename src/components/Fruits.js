@@ -3,6 +3,9 @@ import React from "react";
 // components
 import Fruit from "./Fruit";
 
+// MUI
+import Typography from "@material-ui/core/Typography";
+
 export default function Fruits(props) {
   /*
   props = {
@@ -34,5 +37,10 @@ export default function Fruits(props) {
     />
   ));
 
-  return <div id="panels">{menuItems}</div>;
+  return (
+    <div id="panels">
+      <Typography variant="h2">The Fruits.</Typography>
+      {menuItems}
+    </div>
+  );
 }

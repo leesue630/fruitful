@@ -44,3 +44,7 @@ code {
 .margin20 {
   margin: 20px;
 }
+
+#panels {
+  margin-bottom: 50px;
+}

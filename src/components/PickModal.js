@@ -48,9 +48,14 @@ export default function PickModal(props) {
   function openModal() {
     setIsOpen(true);
     setError("");
-    setFruitPick("");
     setComment("");
     setUploading(false);
+    if (props.fruit) {
+      setFruitPick(props.fruit.name);
+      setFruits({ [props.fruit.name]: props.fruit.id });
+    } else {
+      setFruitPick("");
+    }
   }
 
   function afterOpenModal() {
@@ -114,7 +119,7 @@ export default function PickModal(props) {
         onClick={openModal}
         className={classes.margin20}
       >
-        Make a pick!
+        {props.fruit ? "Pick this fruit!" : "Make a pick!"}
       </Button>
       <Modal
         isOpen={modalIsOpen}

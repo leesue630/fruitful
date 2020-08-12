@@ -38,7 +38,7 @@ class App extends Component {
         });
       })
       .catch((err) => {
-        if (err.response.status === 404) {
+        if (err.response?.status === 404) {
           this.setState({
             auth: true,
           });

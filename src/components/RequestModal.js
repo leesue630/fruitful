@@ -45,12 +45,12 @@ export default function RequestModal(props) {
   }
 
   function handleRequest() {
-    setUploadStatus("Uploading");
+    setUploadStatus("Sending");
     axios
       .post("/request", { fruit: fruitRequest })
       .then((res) => {
         console.log("made pick", res);
-        setUploadStatus("Uploaded");
+        setUploadStatus("Email Sent!");
       })
       .catch((err) => {
         console.error("Something went wrong", err);
@@ -81,7 +81,7 @@ export default function RequestModal(props) {
           "Something went wrong..."
         ) : (
           <div>
-            <h2>Request a Fruit!</h2>
+            <h2>Request a new fruit!</h2>
             <TextField
               id="fruit"
               name="fruit"
@@ -91,7 +91,7 @@ export default function RequestModal(props) {
               onChange={handleFruitRequestChange}
               className={classes.margin10}
               variant="outlined"
-              disabled={uploadStatus === "Uploading"}
+              disabled={uploadStatus === "Sending"}
             />
             <br />
             <Button
