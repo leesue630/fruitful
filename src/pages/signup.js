@@ -15,9 +15,29 @@ class signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      serverError: false,
       error: null,
       handle: "",
     };
+
+    this.handleError = this.handleError.bind(this);
+  }
+
+  handleError(err) {
+    console.error(err);
+    if (err.response?.status === 400) {
+      this.setState({
+        error: "This handle is already taken",
+      });
+    } else {
+      this.setState({
+        serverError: true,
+        error:
+          err.message === "Network Error"
+            ? "Quota exceeded :(. Check back in ~100 seconds and your handle will be set!"
+            : "Something went wrong... :(",
+      });
+    }
   }
 
   onSubmit(event) {
@@ -29,16 +49,7 @@ class signup extends Component {
           console.log("created user", res);
           this.props.setHandle(this.state.handle);
         })
-        .catch((err) => {
-          console.error(err);
-          if (err.response.status === 400) {
-            this.setState({
-              error: "This handle is already taken",
-            });
-          } else {
-            console.log("Something went wrong");
-          }
-        });
+        .catch(this.handleError);
     }
   }
 
@@ -74,7 +85,12 @@ class signup extends Component {
               className={classes.textField}
             />
             <br />
-            <Button type="submit" variant="contained" color="primary">
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={this.state.serverError}
+            >
               Set Handle
             </Button>
           </form>
