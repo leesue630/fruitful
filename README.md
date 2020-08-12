@@ -5,13 +5,13 @@
 >![](homepage.png)
 
 ## Make an account, choose a handle, and make your first pick!
->![](pickmodal.png | width=200)
+<img src="https://https://github.com/leesue630/fruitful/blob/master/pickmodal.png" width="100" height="100">
 
 ## Share the site with your friends, convince others to pick your fruit and watch as your fruit climbs in the rankings!
 >![](fruitpage.png)
 
 ## Don't see your favorite fruit? Make a request and I'll be sent an email with your request. 😊
->![](requestmodal.png | width=200)
+<img src="https://https://github.com/leesue630/fruitful/blob/master/requestmodal.png" width="100" height="100">
 
 Uses Modal React component (https://www.npmjs.com/package/react-modal)
 Uses Nodemailer (https://www.npmjs.com/package/nodemailer)
