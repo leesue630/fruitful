@@ -39,7 +39,8 @@ export default function Fruits(props) {
 
   return (
     <div id="panels">
-      <Typography variant="h2">The Fruits.</Typography>
+      <Typography variant="h3">The People's picks.</Typography>
+      <Typography variant="h6">What's YOURS?</Typography>
       {menuItems}
     </div>
   );
