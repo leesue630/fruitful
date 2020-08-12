@@ -5,13 +5,13 @@
 >![](homepage.png)
 
 ## Make an account, choose a handle, and make your first pick!
-<img src="pickmodal.png" width="100" height="100">
+<img src="pickmodal.png" width="500">
 
 ## Share the site with your friends, convince others to pick your fruit and watch as your fruit climbs in the rankings!
 >![](fruitpage.png)
 
 ## Don't see your favorite fruit? Make a request and I'll be sent an email with your request. 😊
-<img src="requestmodal.png" width="100" height="100">
+<img src="requestmodal.png" width="500">
 
 Uses Modal React component (https://www.npmjs.com/package/react-modal)
 Uses Nodemailer (https://www.npmjs.com/package/nodemailer)
