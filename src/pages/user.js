@@ -18,9 +18,25 @@ class user extends Component {
     super(props);
     this.state = {
       picks: null,
-      error: false,
+      error: "",
     };
+
+    this.handleError = this.handleError.bind(this);
   }
+
+  handleError(err) {
+    console.error(err);
+    if (err.message === "Network Error") {
+      this.setState({
+        error: "Sorry, quota exceeded :(. Try again in ~100 secs!",
+      });
+    } else {
+      this.setState({
+        error: "Something went wrong. :(",
+      });
+    }
+  }
+
   componentDidMount() {
     axios
       .get(`/user/${this.props.match.params.handle}`)
@@ -31,12 +47,7 @@ class user extends Component {
           currentPick: res.data.user.currentPick,
         });
       })
-      .catch((err) => {
-        console.error(err);
-        this.setState({
-          error: true,
-        });
-      });
+      .catch(this.handleError);
   }
   render() {
     const { classes } = this.props;
@@ -54,8 +65,8 @@ class user extends Component {
           {isPersonalPage && "Your"} Current Pick: {this.state.currentPick}
         </Typography>
         <br />
-        {this.state.error ? (
-          "Something went wrong..."
+        {this.state.error !== "" ? (
+          this.state.error
         ) : (
           <PickView picks={this.state.picks} showFruitName={true} />
         )}

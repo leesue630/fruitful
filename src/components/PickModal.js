@@ -58,6 +58,19 @@ export default function PickModal(props) {
     }
   }
 
+  const handleError = (msg) => (err) => {
+    console.error(err);
+    if (err.message === "Network Error") {
+      this.setState({
+        error: msg,
+      });
+    } else {
+      this.setState({
+        error: "Something went wrong. :(",
+      });
+    }
+  };
+
   function afterOpenModal() {
     if (fruits.length === 0) {
       axios
@@ -70,10 +83,9 @@ export default function PickModal(props) {
             )
           );
         })
-        .catch((err) => {
-          console.error("Something went wrong", err);
-          setError("Something went wrong...");
-        });
+        .catch(
+          handleError("Sorry, quota exceeded :(. Try again in ~100 secs!")
+        );
     }
   }
 
@@ -91,10 +103,11 @@ export default function PickModal(props) {
         setUploading(false);
         window.location.reload();
       })
-      .catch((err) => {
-        console.error("Something went wrong", err);
-        setError("Something went wrong...");
-      });
+      .catch(
+        handleError(
+          "Quota exceeded :(. Check back in ~100 secs and your pick will be made!"
+        )
+      );
   }
 
   function handleFruitPickChange(event) {
@@ -129,7 +142,7 @@ export default function PickModal(props) {
         contentLabel="Pick Modal"
       >
         {error !== "" ? (
-          "Something went wrong..."
+          error
         ) : (
           <div>
             <h2>Choose a fruit!</h2>

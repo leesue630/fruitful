@@ -44,18 +44,28 @@ export default function RequestModal(props) {
     setIsOpen(false);
   }
 
+  function handleError(err) {
+    console.error(err);
+    if (err.message === "Network Error") {
+      this.setState({
+        error: "Quota exceeded :(. Your request will be made in ~100 secs!",
+      });
+    } else {
+      this.setState({
+        error: "Something went wrong. :(",
+      });
+    }
+  }
+
   function handleRequest() {
     setUploadStatus("Sending");
     axios
       .post("/request", { fruit: fruitRequest })
       .then((res) => {
-        console.log("made pick", res);
+        console.log("made request", res);
         setUploadStatus("Email Sent!");
       })
-      .catch((err) => {
-        console.error("Something went wrong", err);
-        setError("Something went wrong...");
-      });
+      .catch(handleError);
   }
 
   function handleFruitRequestChange(event) {
@@ -75,10 +85,10 @@ export default function RequestModal(props) {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Pick Modal"
+        contentLabel="Request Modal"
       >
         {error !== "" ? (
-          "Something went wrong..."
+          error
         ) : (
           <div>
             <h2>Request a new fruit!</h2>

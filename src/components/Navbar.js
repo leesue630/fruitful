@@ -29,6 +29,15 @@ const useStyles = () => ({
 });
 
 class Navbar extends Component {
+  /*
+  props = {
+    auth: bool,
+    handle: string,
+    onLogin: fxn,
+    onLogout: fxn
+  }
+  */
+
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],

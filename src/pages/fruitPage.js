@@ -11,10 +11,31 @@ class fruitPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
+      error: "",
     };
+    this.handleError = this.handleError.bind(this);
   }
+
+  handleError(err) {
+    console.error(err);
+    if (err.message === "Network Error") {
+      this.setState({
+        loading: false,
+        error: "Sorry, quota exceeded :(. Try again in ~100 secs!",
+      });
+    } else {
+      this.setState({
+        loading: false,
+        error: "Something went wrong. :(",
+      });
+    }
+  }
+
   componentDidMount() {
+    this.setState({
+      loading: true,
+    });
     axios
       .get(`/fruits/${this.props.match.params.fruitId}`)
       .then((res) => {
@@ -26,7 +47,7 @@ class fruitPage extends Component {
           loading: false,
         });
       })
-      .catch(console.error);
+      .catch(this.handleError);
     axios
       .get(`/picks/${this.props.match.params.fruitId}`)
       .then((res) => {
@@ -35,7 +56,7 @@ class fruitPage extends Component {
           picks: res.data,
         });
       })
-      .catch(console.error);
+      .catch(this.handleError);
     axios
       .get("/fruits")
       .then((res) => {
@@ -45,11 +66,13 @@ class fruitPage extends Component {
           )[0].ranking,
         });
       })
-      .catch(console.log);
+      .catch(this.handleError);
   }
   render() {
     return this.state.loading ? (
       <div>Loading fruit page...</div>
+    ) : this.state.error !== "" ? (
+      this.state.error
     ) : (
       <div>
         <Typography variant="h3" component="h2">

@@ -10,7 +10,6 @@ import Navbar from "./components/Navbar";
 import FruitPage from "./pages/fruitPage";
 
 document.cookie = "cross-site-cookie=G_ENABLED_IDPS; SameSite=None; Secure";
-document.cookie = "cross-site-cookie=G_ENABLED_IDPS; SameSite=None; Secure";
 
 axios.defaults.baseURL =
   "https://us-central1-fruitful-convos.cloudfunctions.net/api";
@@ -25,6 +24,11 @@ class App extends Component {
     this.onLogin = this.onLogin.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.setHandle = this.setHandle.bind(this);
+    this.handleError = this.handleError.bind(this);
+  }
+
+  handleError(err) {
+    console.error(err);
   }
 
   onLogin() {
@@ -44,7 +48,7 @@ class App extends Component {
           });
           console.log("Create Account");
         } else {
-          console.error(err);
+          this.handleError(err);
         }
       });
   }

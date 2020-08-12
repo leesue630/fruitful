@@ -13,48 +13,58 @@ class home extends Component {
     super(props);
     this.state = {
       loading: true,
-      error: false,
+      error: "",
     };
+    this.handleError = this.handleError.bind(this);
   }
+
+  handleError(err) {
+    console.error(err);
+    if (err.message === "Network Error") {
+      this.setState({
+        loading: false,
+        error: "Sorry, quota exceeded :(. Try again in ~100 secs!",
+      });
+    } else {
+      this.setState({
+        loading: false,
+        error: "Something went wrong. :(",
+      });
+    }
+  }
+
   componentDidMount() {
-    axios
-      .get("/fruits")
-      .then((res) => {
-        console.log("fruits", res);
-        this.setState({
-          fruits: res.data,
-          loading: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.setState({
-          loading: false,
-          error: true,
-        });
-      });
-    axios
-      .get("/picks")
-      .then((res) => {
-        console.log("all picks", res);
-        this.setState({
-          todaysPicks: res.data.filter((pick) =>
-            DayJs(pick.createdAt).isSame(DayJs(), "day")
-          ),
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.setState({
-          error: true,
-        });
-      });
+    if (!this.state.fruits) {
+      axios
+        .get("/fruits")
+        .then((res) => {
+          console.log("fruits", res);
+          this.setState({
+            fruits: res.data,
+            loading: false,
+          });
+        })
+        .catch(this.handleError);
+    }
+    if (!this.state.todaysPicks) {
+      axios
+        .get("/picks")
+        .then((res) => {
+          console.log("all picks", res);
+          this.setState({
+            todaysPicks: res.data.filter((pick) =>
+              DayJs(pick.createdAt).isSame(DayJs(), "day")
+            ),
+          });
+        })
+        .catch(this.handleError);
+    }
   }
   render() {
     return this.state.loading ? (
       <div>Loading...</div>
-    ) : this.state.error ? (
-      "Something went wrong..."
+    ) : this.state.error !== "" ? (
+      this.state.error
     ) : (
       <div>
         <Fruits fruits={this.state.fruits} />
