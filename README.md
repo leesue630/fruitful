@@ -16,7 +16,7 @@
 Uses Modal React component (https://www.npmjs.com/package/react-modal)
 Uses Nodemailer (https://www.npmjs.com/package/nodemailer)
 
-Built with React, HTML/CSS, Firebase, 
+Built with React, HTML/CSS, Firebase
 
 Site Link: http://fruitful-convos.web.app
 
