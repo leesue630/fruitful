@@ -83,9 +83,7 @@ export default function PickModal(props) {
             )
           );
         })
-        .catch(
-          handleError("Sorry, quota exceeded :(. Try again in ~100 secs!")
-        );
+        .catch(handleError("Sorry, quota exceeded :(. Try again in ~10 secs!"));
     }
   }
 
@@ -105,7 +103,7 @@ export default function PickModal(props) {
       })
       .catch(
         handleError(
-          "Quota exceeded :(. Check back in ~100 secs and your pick will be made!"
+          "Quota exceeded :(. Check back in ~10 secs and your pick will be made!"
         )
       );
   }

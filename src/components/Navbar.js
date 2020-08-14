@@ -67,7 +67,7 @@ class Navbar extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <AppBar>
+      <AppBar position="sticky">
         <Toolbar>
           <Link to="/">
             <img src={logo} alt="logo" style={{ width: 40, height: 40 }} />

@@ -22,7 +22,7 @@ class fruitPage extends Component {
     if (err.message === "Network Error") {
       this.setState({
         loading: false,
-        error: "Sorry, quota exceeded :(. Try again in ~100 secs!",
+        error: "Sorry, quota exceeded :(. Try again in ~10 secs!",
       });
     } else {
       this.setState({
@@ -84,6 +84,8 @@ class fruitPage extends Component {
           pickCount={this.state.pickCount}
           ranking={this.state.ranking}
         />
+        <br />
+        Total Picks: {this.state.picks?.length}
         <PickModal
           auth={this.props.auth}
           fruit={{ id: this.props.match.params.fruitId, name: this.state.name }}

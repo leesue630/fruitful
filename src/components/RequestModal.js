@@ -48,7 +48,7 @@ export default function RequestModal(props) {
     console.error(err);
     if (err.message === "Network Error") {
       this.setState({
-        error: "Quota exceeded :(. Your request will be made in ~100 secs!",
+        error: "Quota exceeded :(. Your request will be made in ~10 secs!",
       });
     } else {
       this.setState({
@@ -111,7 +111,7 @@ export default function RequestModal(props) {
               disabled={fruitRequest === "" || uploadStatus !== "Unsent"}
               className={classes.margin10}
             >
-              {uploadStatus === "Unsent" ? "Make request!" : uploadStatus}
+              {uploadStatus === "Unsent" ? "Send Email!" : uploadStatus}
             </Button>
             <Button
               variant="contained"

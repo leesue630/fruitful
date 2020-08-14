@@ -23,7 +23,7 @@ class home extends Component {
     if (err.message === "Network Error") {
       this.setState({
         loading: false,
-        error: "Sorry, quota exceeded :(. Try again in ~100 secs!",
+        error: "Sorry, quota exceeded :(. Try again in ~10 secs!",
       });
     } else {
       this.setState({
@@ -46,15 +46,19 @@ class home extends Component {
         })
         .catch(this.handleError);
     }
-    if (!this.state.todaysPicks) {
+    if (!this.state.recentPicks) {
       axios
         .get("/picks")
         .then((res) => {
           console.log("all picks", res);
+          var recentPicks = res.data.filter((pick) =>
+            DayJs(pick.createdAt).isSame(DayJs(), "day")
+          );
+          if (recentPicks.length < 5) {
+            recentPicks = res.data.slice(0, 5);
+          }
           this.setState({
-            todaysPicks: res.data.filter((pick) =>
-              DayJs(pick.createdAt).isSame(DayJs(), "day")
-            ),
+            recentPicks,
           });
         })
         .catch(this.handleError);
@@ -69,8 +73,8 @@ class home extends Component {
       <div>
         <Fruits fruits={this.state.fruits} />
         <PickModal auth={this.props.auth} />
-        <Typography variant="h4">Today's picks:</Typography>
-        <PickView picks={this.state.todaysPicks} showFruitName={true} />
+        <Typography variant="h4">Recent picks:</Typography>
+        <PickView picks={this.state.recentPicks} showFruitName={true} />
       </div>
     );
   }

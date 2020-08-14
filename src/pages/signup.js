@@ -34,7 +34,7 @@ class signup extends Component {
         serverError: true,
         error:
           err.message === "Network Error"
-            ? "Quota exceeded :(. Check back in ~100 seconds and your handle will be set!"
+            ? "Quota exceeded :(. Check back in ~10 seconds and your handle will be set!"
             : "Something went wrong... :(",
       });
     }

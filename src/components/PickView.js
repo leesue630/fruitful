@@ -9,7 +9,7 @@ export default function PickView(props) {
       recentPicksMarkup = "No picks.";
     } else {
       recentPicksMarkup = props.picks.map((pick) => (
-        <Grid item key={pick.pickId} xs={3}>
+        <Grid item key={pick.pickId} xs={12}>
           <Pick
             key={pick.pickId}
             userHandle={pick.userHandle}

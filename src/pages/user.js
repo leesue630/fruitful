@@ -28,7 +28,7 @@ class user extends Component {
     console.error(err);
     if (err.message === "Network Error") {
       this.setState({
-        error: "Sorry, quota exceeded :(. Try again in ~100 secs!",
+        error: "Sorry, quota exceeded :(. Try again in ~10 secs!",
       });
     } else {
       this.setState({
