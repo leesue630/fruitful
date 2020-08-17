@@ -41,7 +41,7 @@ class user extends Component {
     axios
       .get(`/user/${this.props.match.params.handle}`)
       .then((res) => {
-        console.log("user details", res);
+        //console.log("user details", res);
         this.setState({
           picks: res.data.picks,
           currentPick: res.data.user.currentPick,

@@ -39,7 +39,7 @@ class fruitPage extends Component {
     axios
       .get(`/fruits/${this.props.match.params.fruitId}`)
       .then((res) => {
-        console.log("specified fruit", res);
+        //console.log("specified fruit", res);
         this.setState({
           fruitId: res.data.id,
           name: res.data.name,
@@ -51,7 +51,7 @@ class fruitPage extends Component {
     axios
       .get(`/picks/${this.props.match.params.fruitId}`)
       .then((res) => {
-        console.log("picks by fruit", res);
+        //console.log("picks by fruit", res);
         this.setState({
           picks: res.data,
         });

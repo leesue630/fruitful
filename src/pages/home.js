@@ -38,7 +38,7 @@ class home extends Component {
       axios
         .get("/fruits")
         .then((res) => {
-          console.log("fruits", res);
+          //console.log("fruits", res);
           this.setState({
             fruits: res.data,
             loading: false,
@@ -50,7 +50,7 @@ class home extends Component {
       axios
         .get("/picks")
         .then((res) => {
-          console.log("all picks", res);
+          //console.log("all picks", res);
           var recentPicks = res.data.filter((pick) =>
             DayJs(pick.createdAt).isSame(DayJs(), "day")
           );

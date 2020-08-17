@@ -46,7 +46,7 @@ class signup extends Component {
       axios
         .post("/createUser", { handle: this.state.handle })
         .then((res) => {
-          console.log("created user", res);
+          //console.log("created user", res);
           this.props.setHandle(this.state.handle);
         })
         .catch(this.handleError);

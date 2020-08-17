@@ -96,7 +96,7 @@ export default function PickModal(props) {
     axios
       .post("/pick", { fruit: fruits[fruitPick], comment: comment })
       .then((res) => {
-        console.log("made pick", res);
+        //console.log("made pick", res);
         closeModal();
         setUploading(false);
         window.location.reload();

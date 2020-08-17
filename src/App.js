@@ -35,7 +35,7 @@ class App extends Component {
     axios
       .get("/user")
       .then((res) => {
-        console.log("authorized user details", res);
+        //console.log("authorized user details", res);
         this.setState({
           auth: true,
           handle: res.data.handle,
@@ -46,7 +46,7 @@ class App extends Component {
           this.setState({
             auth: true,
           });
-          console.log("Create Account");
+          //console.log("Create Account");
         } else {
           this.handleError(err);
         }

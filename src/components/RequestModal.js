@@ -62,7 +62,7 @@ export default function RequestModal(props) {
     axios
       .post("/request", { fruit: fruitRequest })
       .then((res) => {
-        console.log("made request", res);
+        //console.log("made request", res);
         setUploadStatus("Email Sent!");
       })
       .catch(handleError);
